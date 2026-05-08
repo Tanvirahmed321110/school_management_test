@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========== WINDOW ACTION ========== -->
+    <record id="action_school_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_school_student_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first student
+            </p>
+        </field>
+    </record>
+
+    <!-- ========== TREE VIEW (List View) ========== -->
+    <record id="view_school_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="is_even_roll"/>
+                <field name="roll"/>
+                <field name="admission_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ========== Form VIEW (Form View) ========== -->
+    <record id="view_school_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="roll"/>
+                            <field name="admission_date"/>
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="class_name"/>
+                            <field name="is_even_roll" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Parent Info">
+                            <group>
+                                <field name="father_name"/>
+                                <field name="mother_name"/>
+                            </group>
+                        </page>
+                        <page string="Contact Info">
+                            <group>
+                                <field name="phone"/>
+                                <field name="address"/>
+                            </group>
+                        </page>
+
+                        <page string="Other Info">
+                            <group>
+                                <field name="date_of_birth"/>
+                                <field name="address"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- ========== Search VIEW (Form View) ========== -->
+    <record id="view_school_student_search" model="ir.ui.view">
+        <field name="name">school.student.search</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Search by Roll Number -->
+                <field name="roll" string="Roll Number" placeholder="search by roll number..."/>
+
+                <!-- Search by name -->
+                <field name="name" string="name" placeholder="search by name..."/>
+
+                <!-- Filter by roll 1-10 -->
+                <filter
+                        name="roll_1_10"
+                        string="Roll 1-10"
+                        domain="[('roll', '&gt;=', 1), ('roll', '&lt;=', 10)]"
+                />
+                <separator/>
+                <filter name="even_roll"
+                        string="Even Rolls"
+                        domain="[('is_even_roll','=',True)]"
+                />
+
+                <!-- Group By -->
+                <group expand="0">
+                    <filter name="group_by_roll"
+                            string="group_by_roll"
+                            context="{'group_by': 'roll'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+     <!-- ========== Class Six Action ========== -->
+    <record id="action_class_six" model="ir.actions.act_window">
+        <field name="name">class.six.students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('class_name','=','six')]</field>
+        <field name="context">{'default_class_name': 'six'}</field>
+    </record>
+</odoo>
