@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========== WINDOW ACTION ========== -->
+    <record id="action_school_teacher" model="ir.actions.act_window">
+        <field name="name">Teacher</field>
+        <field name="res_model">school.teacher</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ========== TEACHER SEQUENCE  ========== -->
+    <record id="seq_school_teacher" model="ir.sequence">
+        <field name="name">School Teacher</field>
+        <field name="code">school.teacher</field>
+        <field name="prefix">TCH-</field>  <!-- যেমন: TCH-300, TCH-301 -->
+        <field name="padding">3</field>     <!-- 3 digit -> 300, 301, 302 -->
+        <field name="number_next">300</field>  <!-- 300 থেকে শুরু হবে -->
+        <field name="number_increment">1</field>  <!-- 1 করে বাড়বে -->
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- ========== LIST VIEW  ========== -->
+    <record id="view_school_teacher_list" model="ir.ui.view">
+        <field name="name">school.teacher.tree</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="teacher_id"/>
+                <field name="gender"/>
+                <field name="date_of_birth"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ========== Form VIEW ========== -->
+    <record id="view_school_teacher_form" model="ir.ui.view">
+        <field name="name">school.teacher.form</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_of_birth"/>
+                            <field name="teacher_id"/>
+                            <field name="class_teacher_of"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                            <field name="is_active"/>
+                            <field name="gender"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Contact Info">
+                            <group>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="address"/>
+                            </group>
+                        </page>
+                        <page string="Professional Information">
+                            <group>
+                                <field name="qualification"/>
+                                <field name="experience_years"/>
+                                <field name="specialization"/>
+                                <field name="joining_date"/>
+                            </group>
+                        </page>
+
+                        <page string="Other Info">
+                            <group>
+                                <field name="date_of_birth"/>
+                                <field name="address"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- ========== Search VIEW (Form View) ========== -->
+    <record id="view_school_teacher_search" model="ir.ui.view">
+        <field name="name">school.teacher.search</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Search by Roll Number -->
+                <field name="teacher_id" string="Teacher ID" placeholder="search by Teacher Id..."/>
+
+                <!-- Search by name -->
+                <field name="name" string="name" placeholder="search by name..."/>
+
+                <!-- Filter by Gender -->
+                <filter
+                        name="male_gender"
+                        string="Male Gender"
+                        domain="[('gender', '=', 'male')]"
+                />
+                <!-- Filter by Gender -->
+                <filter
+                        name="female_gender"
+                        string="Female Gender"
+                        domain="[('gender', '=', 'female')]"
+                />
+            </search>
+        </field>
+    </record>
+
+</odoo>

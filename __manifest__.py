@@ -27,6 +27,7 @@
         'security/ir.model.access.csv',
 
         # views
+        'views/teacher_view.xml',
         'views/student_view.xml',
         'views/menu.xml',
     ],

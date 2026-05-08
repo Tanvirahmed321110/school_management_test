@@ -2,43 +2,58 @@
 <odoo>
     <!--========  Root Menu  ========-->
     <menuitem id="menu_root_school_management"
-        name="School Management"
-        sequence="0"
+              name="School Management"
+              sequence="0"
     />
 
-    <!--========  Class Menu  ========-->
-    <menuitem id="menu_school_class"
-        name="Classes"
-        parent="menu_root_school_management"
-        sequence="10"
+    <!--========  Teacher Menu  ========-->
+    <menuitem id="menu_school_teacher_main"
+              name="Teacher"
+              parent="menu_root_school_management"
+              sequence="2"
+    />
+    <!--========  Teacher Menu  (Child under Teacher) ========-->
+    <menuitem id="menu_school_teacher"
+              name="Teachers"
+              parent="menu_school_teacher_main"
+              action="action_school_teacher"
+              sequence="1"
     />
 
     <!--========  Subject Menu (Level 1) ========-->
     <menuitem id="menu_school_subject"
-        name="Subjects"
-        parent="menu_root_school_management"
-        sequence="20"
+              name="Subjects"
+              parent="menu_root_school_management"
+              sequence="20"
     />
 
     <!--========  Student Menu (Level 1) ========-->
     <menuitem id="menu_school_student"
-        name="Students"
-        parent="menu_root_school_management"
-        sequence="30"
+              name="Students"
+              parent="menu_root_school_management"
+              sequence="30"
     />
 
 
-     <!--========  All Student (Child under Student) ========-->
+    <!--========  All Student (Child under Student) ========-->
     <menuitem id="menu_school_all_students"
-        name="All Student"
-        parent="menu_school_student"
-        sequence="1"
-        action="action_school_student"
+              name="All Student"
+              parent="menu_school_student"
+              sequence="1"
+              action="action_school_student"
     />
-       <menuitem id="menu_school_class_six_student"
-        name="Class Six Students"
-        parent="menu_school_student"
-        sequence="2"
-        action="action_class_six"
+    <!-- for class six  -->
+    <menuitem id="menu_school_class_six_student"
+              name="Class Six Students"
+              parent="menu_school_student"
+              sequence="2"
+              action="action_class_six"
+    />
+    <!-- for class seven -->
+    <menuitem id="menu_school_class_seven_student"
+              name="Class Seven Students"
+              parent="menu_school_student"
+              sequence="3"
+              action="action_class_seven"
     />
 </odoo>
