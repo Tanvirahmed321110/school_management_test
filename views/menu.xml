@@ -20,22 +20,16 @@
               sequence="1"
     />
 
-    <!--========  Subject Menu (Level 1) ========-->
-    <menuitem id="menu_school_subject"
-              name="Subjects"
-              parent="menu_root_school_management"
-              sequence="20"
-    />
 
-    <!--========  Student Menu (Level 1) ========-->
+    <!--========  Teacher Menu  (Child under Root) ========-->
     <menuitem id="menu_school_student"
               name="Students"
               parent="menu_root_school_management"
-              sequence="30"
+              sequence="3"
     />
 
 
-    <!--========  All Student (Child under Student) ========-->
+    <!-- All Student (Child under Student) -->
     <menuitem id="menu_school_all_students"
               name="All Student"
               parent="menu_school_student"
@@ -55,5 +49,36 @@
               parent="menu_school_student"
               sequence="3"
               action="action_class_seven"
+    />
+
+    <!--========  Founder (Child under Root) ========-->
+    <menuitem id="menu_school_founder"
+              name="Founder"
+              parent="menu_root_school_management"
+              sequence="1"
+              action="action_school_founder"
+              groups="base.group_system"
+    />
+
+     <!--========  Configuration  (Child under Root) ========-->
+    <menuitem id="menu_school_configuration"
+              name="Configuration"
+              parent="menu_root_school_management"
+              sequence="5"
+              groups="base.group_system"
+    />
+    <!-- for grade -->
+     <menuitem id="menu_school_teacher_grade"
+              name="Grade"
+              parent="menu_school_configuration"
+              sequence="1"
+              action="action_teacher_grade"
+    />
+    <!-- for salary -->
+      <menuitem id="menu_school_teacher_salary"
+              name="Salary"
+              parent="menu_school_configuration"
+              sequence="2"
+              action="action_school_teacher_salary"
     />
 </odoo>

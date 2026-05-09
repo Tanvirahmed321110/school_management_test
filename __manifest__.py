@@ -29,6 +29,7 @@
         # views
         'views/teacher_view.xml',
         'views/student_view.xml',
+        'views/founder_view.xml',
         'views/menu.xml',
     ],
     'assets': {

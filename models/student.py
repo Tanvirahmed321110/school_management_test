@@ -9,6 +9,7 @@ class SchoolStudent(models.Model):
     _rec_name = 'name'
 
     name = fields.Char(string='Student Name', required=True)
+    image_1920 = fields.Char(string='Student Image')
     roll = fields.Integer(string='Roll Number',required=True)
     gender = fields.Selection([
         ('male', 'Male'),

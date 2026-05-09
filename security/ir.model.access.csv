@@ -1,3 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_school_student,school.student,model_school_student,base.group_user,1,1,1,1
 access_school_teacher,school.teacher,model_school_teacher,base.group_user,1,1,1,1
+access_school_founder,school.founder,model_school_founder,base.group_system,1,1,1,1
+
+
+access_school_teacher_grade,school.teacher.grade,model_school_teacher_grade,base.group_user,1,1,1,1
+access_school_teacher_salary,school.teacher.salary,model_school_teacher_salary,base.group_user,1,1,1,1

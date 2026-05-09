@@ -47,6 +47,7 @@
                             <field name="class_teacher_of"/>
                         </group>
                         <group>
+                            <field name="image_1920" class="oe_avatar" widget="image"/>
                             <field name="age"/>
                             <field name="is_active"/>
                             <field name="gender"/>
@@ -111,4 +112,72 @@
         </field>
     </record>
 
+
+    <!-- ========== Grade Action  ========== -->
+    <record id="action_teacher_grade" model="ir.actions.act_window">
+        <field name="name">Teacher Grades</field>
+        <field name="res_model">school.teacher.grade</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ========== Grade Action List view  ========== -->
+    <record id="view_teacher_grade_tree" model="ir.ui.view">
+        <field name="name">teacher.grade.tree</field>
+        <field name="model">school.teacher.grade</field>
+        <field name="arch" type="xml">
+            <list string="Teacher Grades">
+                <field name="name"/>
+                <field name="salary_ids" string="Salaries" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ========== Grade Action Form view  ========== -->
+    <record id="view_teacher_grade_form" model="ir.ui.view">
+        <field name="name">teacher.grade.form</field>
+        <field name="model">school.teacher.grade</field>
+        <field name="arch" type="xml">
+            <form string="Teacher Grades">
+                <field name="name"/>
+                <field name="salary_ids" string="Salaries" widget="many2many_tags"/>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- ================================================ -->
+    <!-- Action for Teacher Salary                        -->
+    <!-- ================================================ -->
+    <record id="action_school_teacher_salary" model="ir.actions.act_window">
+        <field name="name">Teacher Salaries</field>
+        <field name="res_model">school.teacher.salary</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ========== Grade Action List view  ========== -->
+    <record id="view_school_teacher_salary_tree" model="ir.ui.view">
+        <field name="name">school.teacher.salary.tree</field>
+        <field name="model">school.teacher.salary</field>
+        <field name="arch" type="xml">
+            <list string="Teacher Salaries" editable="top">
+                <field name="amount" string="Salary Amount" widget="monetary" sum="Total"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ========== Salary Action Form view  ========== -->
+    <record id="view_school_teacher_salary_form" model="ir.ui.view">
+        <field name="name">school.teacher.salary.form</field>
+        <field name="model">school.teacher.salary</field>
+        <field name="arch" type="xml">
+            <form string="Teacher Salary">
+                <sheet>
+
+                    <group>
+                        <field name="amount" string="Salary Amount" required="1" widget="monetary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>

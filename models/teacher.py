@@ -11,8 +11,9 @@ class SchoolTeacher(models.Model):
 
     # Basic Information
     name = fields.Char(string='Teacher Name', required=True)
-    teacher_id = fields.Char(string='Teacher ID', required=True,copy=False,readonly=True,
+    teacher_id = fields.Char(string='Teacher ID', required=True, copy=False, readonly=True,
                              default=lambda self: self.env['ir.sequence'].next_by_code('school.teacher'))
+    image_1920 = fields.Image(string='Teacher Image')
 
     # Personal Information
     gender = fields.Selection([
@@ -63,4 +64,36 @@ class SchoolTeacher(models.Model):
                 record.age = age
             else:
                 record.age = 0
+
+
+
+# Model 1: Grade
+class TeacherGrade(models.Model):
+    _name = 'school.teacher.grade'
+    _description = 'Teacher Grade'
+    _rec_name = 'name'
+
+    name = fields.Selection([
+        ('junior', 'Junior'),
+        ('mid', 'Mid'),
+        ('senior', 'Senior'),
+        ('lead', 'Lead'),
+    ], string='Grade', required=True)
+
+    # Grade এর সাথে Salary relation থাকবে Many2many অথবা One2many
+    # salary_ids = fields.One2many('teacher.salary', 'grade_id', string='Salaries')
+    salary_ids = fields.One2many('school.teacher.salary','grade_id',string='Salaries')
+
+
+# Model 2: Salary (যেখানে salary থাকবে এবং grade এর সাথে relation থাকবে)
+class TeacherSalary(models.Model):
+    _name = 'school.teacher.salary'
+    _description = 'Teacher Salary'
+    _rec_name = 'grade_id'
+
+    # Grade এর সাথে relation (Many2one)
+    grade_id = fields.Many2one('school.teacher.grade', string='Grade', required=True)
+
+    # Salary amount
+    amount = fields.Float(string='Salary Amount', required=True)
 
